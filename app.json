@@ -12,15 +12,5 @@
         "cpu": "1",
         "port": 80,
         "http2": false
-    },
-    "hooks": {
-        "prebuild": {
-            "commands": [
-                "export NODE_OPTIONS=\"--require /app/node_modules/dd-trace\"",
-                "export DD_SERVICE=\"datadog-demo-run-js\"",
-                "export DD_ENV=\"datadog-demo\"",
-                "export DD_VERSION=\"1\""
-            ]
-        }
     }
 }
