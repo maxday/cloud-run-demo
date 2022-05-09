@@ -14,7 +14,7 @@
         "http2": false
     },
     "hooks": {
-        "precreate": {
+        "prebuild": {
             "commands": [
                 "export NODE_OPTIONS=\"--require /app/node_modules/dd-trace\"",
                 "export DD_SERVICE=\"datadog-demo-run-js\"",
