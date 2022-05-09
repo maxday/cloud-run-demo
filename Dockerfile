@@ -10,7 +10,7 @@ WORKDIR /app
 COPY --from=build-env /app /app
 COPY --from=maxday/cr /datadog-agent /app/datadog-agent
 
-ENV NODE_OPTIONS="--require /app/node_modules/dd-trace"
+ENV NODE_OPTIONS="--require dd-trace/init"
 ENV DD_SERVICE=datadog-demo-run-js
 ENV DD_ENV=datadog-demo
 ENV DD_VERSION=1
