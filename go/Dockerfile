@@ -1,0 +1,17 @@
+FROM golang:1.17-buster as builder
+WORKDIR /app
+COPY main.go go.mod go.sum /app/
+RUN go build -o app
+
+FROM debian:stable-slim
+RUN apt-get update
+RUN apt-get install -y ca-certificates
+COPY --from=builder /app/app /app/app
+COPY --from=maxday/cr /datadog-agent /app/datadog-agent
+
+ENV DD_SERVICE=datadog-demo-run-go
+ENV DD_ENV=datadog-demo
+ENV DD_VERSION=1
+
+ENTRYPOINT ["/app/datadog-agent"]
+CMD ["/app/app"]
