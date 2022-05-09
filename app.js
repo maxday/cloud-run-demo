@@ -2,7 +2,7 @@ require('dd-trace').init();
 const express = require('express');
 const app = express();
 
-app.get("/hello", async (req, res) => {
+app.get("/", async (req, res) => {
   console.log("in /hello");
   res.status(200).json({"msg":"Hello world!"});
 });

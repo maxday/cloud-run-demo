@@ -4,6 +4,10 @@
         "DD_API_KEY": {
             "description": "Your Datadog's API KEY (see: https://docs.datadoghq.com/account_management/api-app-keys)",
             "required": true
+        },
+        "DD_SERVICE": {
+            "description": "Service name",
+            "value": "DATADOG_CLOUD_RUN_DEMO_JS"
         }
     },
     "options": {
