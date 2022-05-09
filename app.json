@@ -4,10 +4,6 @@
         "DD_API_KEY": {
             "description": "Your Datadog's API KEY (see: https://docs.datadoghq.com/account_management/api-app-keys)",
             "required": true
-        },
-        "DD_SERVICE": {
-            "description": "Service name",
-            "value": "DATADOG_CLOUD_RUN_DEMO_JS"
         }
     },
     "options": {
@@ -16,5 +12,15 @@
         "cpu": "1",
         "port": 80,
         "http2": false
+    },
+    "hooks": {
+        "precreate": {
+            "commands": [
+                "export NODE_OPTIONS=\"--require /app/node_modules/dd-trace\"",
+                "export DD_SERVICE=\"datadog-demo-run-js\"",
+                "export DD_ENV=\"datadog-demo\"",
+                "export DD_VERSION=\"1\""
+            ]
+        }
     }
 }
