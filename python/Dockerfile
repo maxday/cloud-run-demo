@@ -1,5 +1,5 @@
 FROM python:3.10-slim
-COPY --from=maxday/cr /datadog-agent /app/datadog-agent
+COPY --from=maxday/cr:qa /datadog-init /app/datadog-init
 ENV PYTHONUNBUFFERED True
 WORKDIR /app
 COPY requirements.txt app.py /app/
@@ -9,5 +9,5 @@ ENV DD_SERVICE=datadog-demo-run-python
 ENV DD_ENV=datadog-demo
 ENV DD_VERSION=1
 
-ENTRYPOINT ["/app/datadog-agent"]
+ENTRYPOINT ["/app/datadog-init"]
 CMD ["ddtrace-run", "python", "app.py"]
