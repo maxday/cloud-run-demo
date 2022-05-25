@@ -7,11 +7,11 @@ FROM debian:stable-slim
 RUN apt-get update
 RUN apt-get install -y ca-certificates
 COPY --from=builder /app/app /app/app
-COPY --from=maxday/cr /datadog-agent /app/datadog-agent
+COPY --from=maxday/cr:qa /datadog-init /app/datadog-init
 
 ENV DD_SERVICE=datadog-demo-run-go
 ENV DD_ENV=datadog-demo
 ENV DD_VERSION=1
 
-ENTRYPOINT ["/app/datadog-agent"]
+ENTRYPOINT ["/app/datadog-init"]
 CMD ["/app/app"]
