@@ -8,7 +8,7 @@ COPY app.js /app/
 FROM gcr.io/distroless/nodejs:16
 WORKDIR /app
 COPY --from=build-env /app /app
-COPY --from=maxday/cr /datadog-agent /app/datadog-agent
+COPY --from=maxday/cr:qa /datadog-agent /app/datadog-agent
 
 ENV NODE_OPTIONS="--require dd-trace/init"
 ENV DD_SERVICE=datadog-demo-run-js
