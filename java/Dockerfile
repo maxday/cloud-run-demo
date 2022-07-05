@@ -22,5 +22,9 @@ COPY --from=curl /tmp/dd-java-agent.jar dd-java-agent.jar
 COPY --from=build /workspace/app/target/helloworld-0.0.1-SNAPSHOT.jar app.jar
 COPY --from=datadog/serverless-init:beta1 /datadog-init datadog-init
 
+ENV DD_SERVICE=datadog-demo-run-java
+ENV DD_ENV=datadog-demo
+ENV DD_VERSION=1
+
 ENTRYPOINT ["/app/datadog-init"]
 CMD ["/usr/bin/java", "-javaagent:/app/dd-java-agent.jar", "-jar", "/app/app.jar"]
